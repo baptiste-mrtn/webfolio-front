@@ -1,0 +1,32 @@
+.bg-item {
+    background-position: 20%, center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: grayscale(1);
+    transition: 1s;
+}
+
+.bg-item:hover {
+    background-position: center;
+    filter: grayscale(0);
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    margin-left: -75px;
+    margin-top: -75px;
+    transform: rotate(45deg);
+}
+
+.item {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 1s;
+    filter: grayscale();
+}
+
+.logoImg {
+    width: 40%;
+}

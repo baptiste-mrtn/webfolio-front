@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+
+.text-bm {
+    color: rgb(0, 169, 157);
+}
+
+.bg-bm {
+    background-color: rgb(0, 169, 157);
+}
+
+.title .wrapper {
+    display: grid;
+    place-content: center;
+    font-family: "Rightous", sans-serif;
+    font-size: clamp(1.5rem, 1rem + 4vw, 15rem);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.title .wrapper>div {
+    grid-area: 1/1/-1/-1;
+}
+
+.title .top {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+}
+
+.title .bottom {
+    clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+    color: rgb(0, 169, 157);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transform: translateX(-0.02em);
+}
+
+.pointer {
+    cursor: pointer;
+}

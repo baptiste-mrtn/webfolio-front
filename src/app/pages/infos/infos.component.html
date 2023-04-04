@@ -1,0 +1,70 @@
+<section class="about container mt-5">
+    <div class="title">
+        <div class="wrapper">
+            <div class="top">A propos</div>
+            <div class="bottom" aria-hidden="true">A propos</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-xl-6 mb-4">
+            <div class="competences">
+                <div class="bg-competences"></div>
+                <div class="content-competences mx-auto">
+                    <h2 class="text-uppercase p-4">Baptiste <span class="primary">Martin</span></h2>
+                    <div class="speech p-4 mb-4">
+                        <p> Jeune adulte de 25 ans sortant tout droit d'une formation de développeur au Campus
+                            Numérique In the Alps à Grenoble, je créé des sites webs et applications avec divers
+                            langages de
+                            programmation. </p>
+                        <p> Grâce à mes compétences sur les logiciels Adobe (Photoshop, Illustrator,
+                            InDesign), je crée aussi des montages, des logos et des documents. </p>
+                        <p> Téléchargez dès maintenant mon CV ci-dessous afin de connaître mon parcours
+                            professionnel et étudiant. </p>
+                        <div class="cv-container pulsate-fwd position-absolute w-100 end-0 mt-5">
+                            <a class="cv-button" target="_blank" href="./pdf/cv-baptiste.pdf" download="CV Baptiste">
+                                <span class="cv-button__text">
+                                    Télécharger le CV
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-6">
+            <div class="text-center my-auto">
+                <div class="row p-2 m-0">
+                    <div class="col-12 mb-2">
+                        <h3 class="text-uppercase">Langages</h3>
+                        <hr class="primary border-2">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-4 card shadow-white row mb-3" *ngFor="let langage of langages">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="text-center col-4 p-0">
+                                        <img [src]="langage.src" [alt]="langage.alt">
+                                    </div>
+                                    <span class="col-8 p-0 text-dark">{{langage.alt}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <h3 class="text-uppercase">Logiciels</h3>
+                        <hr class="primary border-2">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-4 card shadow-white row mb-3" *ngFor="let logiciel of logiciels">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="text-center col-4 p-0">
+                                        <img [src]="logiciel.src" [alt]="logiciel.alt">
+                                    </div>
+                                    <span class="col-8 p-0 text-dark">{{logiciel.alt}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

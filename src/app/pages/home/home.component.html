@@ -1,0 +1,15 @@
+<section class="home text-center" style="margin: 0; height: 100%; overflow: hidden;">
+    <div class="row p-0 m-0">
+        <div [class]="isResized ? 'col-6' : 'col-3'" class="p-0 m-0 bg-item pointer'" *ngFor="let item of homeItems"
+            [title]="item.name" [routerLink]="item.route" [style]="'background-image: url(' + item.img + ');'"
+            [style.height.vh]="isResized ? '50' : '100' ">
+        </div>
+    </div>
+    <div class="logo text-bg-dark p-2 position-absolute top-50 start-50">
+        <div style="transform: rotate(-45deg); margin-left: -20px; margin:0 auto;">
+            <img class="logoImg" src="assets/img/logo-nt-blanc.png" alt="logo Baptiste Martin">
+            <hr>
+            <span class="text-light">Développeur</span>
+        </div>
+    </div>
+</section>

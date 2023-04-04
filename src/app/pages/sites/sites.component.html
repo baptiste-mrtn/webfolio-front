@@ -1,0 +1,22 @@
+<section class="sites container mt-5">
+    <div class="title">
+        <div class="wrapper">
+            <div class="top">Sites</div>
+            <div class="bottom" aria-hidden="true">Sites</div>
+        </div>
+    </div>
+    <div class="border-special bg-dark mx-auto">
+        <ol reversed [start]="sites.length -1" class="list row">
+            <li *ngFor="let item of sites" class="pointer col-12 col-md-6 col-lg-3 p-0 m-0">
+                <img src="https://assets.codepen.io/85648/Arooj-Aftab.webp" [alt]="item.title +'-'+ item.description"
+                    href="item.url" />
+                <span>{{item.title}}</span>
+                <span>{{item.description}}</span>
+                <div class="d-flex justify-content-center align-items-center mx-2">
+                    <small *ngFor="let cat of item.categories"
+                        class="small rounded mb-1 me-1 text-center px-1">{{cat}}</small>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
