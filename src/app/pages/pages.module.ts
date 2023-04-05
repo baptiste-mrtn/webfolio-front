@@ -7,6 +7,8 @@ import { InfosComponent } from './infos/infos.component';
 import { SitesComponent } from './sites/sites.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { ContactComponent } from './contact/contact.component';
     SitesComponent,
     GalleryComponent,
     ContactComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,8 @@ import { InfosComponent } from './infos/infos.component';
 import { SitesComponent } from './sites/sites.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 // import { LoginComponent } from './login/login.component';
 // import { PassLostComponent } from './pass-lost/pass-lost.component';
 // import { PassNewComponent } from './pass-new/pass-new.component';
@@ -13,14 +15,14 @@ import { ContactComponent } from './contact/contact.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'infos', component: InfosComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'sites', component: SitesComponent },
   { path: 'gallery', component: GalleryComponent },
   // { path: 'public', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   // { path: 'public_dl', loadChildren: () => import('./token/token.module').then(m => m.TokenModule) },
-  // { path: 'a', loadChildren: () => import('./receive-document/receive-document.module').then(m => m.ReceiveDocumentModule) },
-  // { path: 'login', component: LoginComponent },
   // { path: 'pass-lost', component: PassLostComponent },
   // { path: 'public/changementmotdepasse/:token', component: PassLostSubmitComponent },
   // { path: 'public/initialisation/:token', component: UserInitComponent },
