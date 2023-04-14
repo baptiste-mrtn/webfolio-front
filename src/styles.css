@@ -55,6 +55,6 @@ a {
     transform: translateX(-0.02em);
 }
 
-.pointer {
-    cursor: pointer;
+*>.pointer {
+    cursor: pointer !important;
 }

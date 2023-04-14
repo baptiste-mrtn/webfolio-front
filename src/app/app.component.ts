@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener, Inject } from '@angular/core';
 import { Router, ActivatedRoute, ChildrenOutletContexts } from '@angular/router';
 import { DOCUMENT, Location } from '@angular/common';
 import { slideInAnimation } from './app.animation';
+import { HttpHeaders } from '@angular/common/http';
+import { AuthenticationService } from './services/authentication.service';
 
 
 @Component({
@@ -13,29 +15,22 @@ import { slideInAnimation } from './app.animation';
   ]
 })
 export class AppComponent implements OnInit {
-  title = 'frizbi-front-v3';
+  title = 'webfolio';
   loggedIn: boolean = false;
   clicked: boolean = true;
-  authService: any;
-  userService: any;
   appService: any;
   constructor(
-    private router: Router,
-    @Inject(DOCUMENT) private document: Document,
-    private location: Location,
-    private activatedRoute: ActivatedRoute,
-    private contexts: ChildrenOutletContexts
+  private authService: AuthenticationService,
+  private contexts: ChildrenOutletContexts,
   ) { }
 
-  ngOnInit(): void {
-  }
+  ls = JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
 
   ngOnDestroy() {
-    this.authService.unsubscribe();
   }
 
   logout() {
-    this.userService.logout();
+    this.authService.logout();
   }
 
   hasPermission(permission: string) {
@@ -44,6 +39,20 @@ export class AppComponent implements OnInit {
 
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
+  }
+
+  private isTokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return expiry * 1000 > Date.now();
+  }
+
+  ngOnInit():void {
+    let token = this.ls.token;
+    if (this.isTokenExpired(token)) {
+      this.logout();
+    } else {
+      this.hasPermission(token);
+    }
   }
 
 }

@@ -1,0 +1,44 @@
+<section class="mt-5">
+  <div class="title">
+    <div class="wrapper">
+        <div class="top">Admin Sites</div>
+        <div class="bottom" aria-hidden="true">Admin Sites</div>
+    </div>
+</div>
+  <div class="container">
+  <div class="row">
+    <div class="col-6 text-start">
+      <button class="btn btn-primary text-end" [routerLink]="'/admin/gallery/list'">Galerie</button>
+    </div>
+    <div class="col-6 text-end">
+      <button class="btn btn-success text-end" [routerLink]="'/admin/sites/create'">Ajouter</button>
+    </div>
+  </div>
+  <hr>
+    <div class="row text-light border-bottom my-2">
+      <div scope="col" class="col-2 d-none d-xl-block"><span>Titre</span></div>
+      <div scope="col" class="col-4 d-none d-xl-block"><span>Description</span></div>
+      <div scope="col" class="col-3 d-none d-xl-block"><span>Image</span></div>
+      <div scope="col" class="col-1 d-none d-xl-block"><span>Catégories</span></div>
+      <div scope="col" class="col-2 d-none d-xl-block"><span></span></div>
+    </div>
+    <div *ngFor="let item of sites; let i = index;">
+      <div class="row align-items-center" [class]="i%2 === 0 ? 'bg-table' : ''">
+      <div class="col-6 col-xl-2"><span>{{item.title}}</span></div>
+      <div class="col-6 col-xl-4"><span>{{item.description}}</span></div>
+      <div class="col-6 col-xl-3"><span><img [src]="url + item.picture" [alt]="item.title" style="width:50%;"></span></div>
+      <div class="col-6 col-xl-1"><span *ngFor="let cat of item.categories">{{cat}}</span></div>
+      <div class="col-6 col-xl-2 text-end">
+        <a class="rounded-circle text-light p-2" [href]="item.url" target="_blank" [title]="item.url"><i class="material-icons">input</i></a>
+        <a class="text-warning" [routerLink]="'/admin/sites/update/' + item.idcrypt">
+          <i class="material-icons">edit</i>
+        </a>
+        <a class="text-danger" (click)="delete(item.idcrypt)">
+          <i class="material-icons">clear</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>

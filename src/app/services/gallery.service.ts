@@ -4,10 +4,9 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SitesService extends BaseService {
+export class GalleryService extends BaseService {
 
   override getEntityUrl(){
     return "sites";
   }
 }
-

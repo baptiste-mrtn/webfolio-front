@@ -3,7 +3,7 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 500;
     height: 50px;
 }
 
@@ -80,8 +80,13 @@ nav {
 }
 
 .trans-4 {
-    transform: translateY(64px);
+    transform: translateY(63px);
     transition: 1s;
+}
+
+.trans-5 {
+  transform: translateY(101px);
+  transition: 1s;
 }
 
 .nav-gradient {

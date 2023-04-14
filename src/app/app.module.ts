@@ -8,6 +8,7 @@ import { PagesModule } from './pages/pages.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './pages/pages-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    SharedModule,
     PagesModule,
     HttpClientModule,
     NgbToastModule,
     NgbModule,
     NgbTypeaheadModule,
     NgbTimepickerModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

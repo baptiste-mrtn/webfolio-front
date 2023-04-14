@@ -8,6 +8,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from '../services/auth.guard';
 // import { LoginComponent } from './login/login.component';
 // import { PassLostComponent } from './pass-lost/pass-lost.component';
 // import { PassNewComponent } from './pass-new/pass-new.component';
@@ -21,6 +22,20 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'sites', component: SitesComponent },
   { path: 'gallery', component: GalleryComponent },
+  {
+    path: 'admin/sites',
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_USER' },
+    loadChildren: () =>
+      import('./admin/sites/sites.module').then((mod) => mod.SitesModule),
+  },
+  {
+    path: 'admin/gallery',
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_USER' },
+    loadChildren: () =>
+      import('./admin/gallery/gallery.module').then((mod) => mod.GalleryModule),
+  },
   // { path: 'public', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   // { path: 'public_dl', loadChildren: () => import('./token/token.module').then(m => m.TokenModule) },
   // { path: 'pass-lost', component: PassLostComponent },
@@ -28,14 +43,14 @@ const routes: Routes = [
   // { path: 'public/initialisation/:token', component: UserInitComponent },
   // { path: 'pass-new', component: PassNewComponent },
   // { path: 'auth-2-factors', component: AuthFactorsComponent },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 export const routingComponents = [
   HomeComponent,
   PageNotFoundComponent,
@@ -43,5 +58,5 @@ export const routingComponents = [
   // PassLostComponent,
   // PassNewComponent,
   // AuthFactorsComponent
-]
-export const routing = RouterModule.forChild(routes)
+];
+export const routing = RouterModule.forChild(routes);

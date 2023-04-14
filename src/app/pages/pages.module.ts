@@ -9,7 +9,10 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { SitesListComponent } from './admin/sites/sites-list/sites-list.component';
+import { SitesEditComponent } from './admin/sites/sites-edit/sites-edit.component';
+import { GalleryListComponent } from './admin/gallery/gallery-list/gallery-list.component';
+import { GalleryEditComponent } from './admin/gallery/gallery-edit/gallery-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,10 @@ import { RegisterComponent } from './register/register.component';
     ContactComponent,
     LoginComponent,
     RegisterComponent,
+    SitesListComponent,
+    SitesEditComponent,
+    GalleryListComponent,
+    GalleryEditComponent,
   ],
   imports: [
     CommonModule,
@@ -28,8 +35,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}

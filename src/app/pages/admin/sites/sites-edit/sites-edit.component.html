@@ -1,0 +1,32 @@
+<section class="mt-5">
+  <div class="container">
+    <form *ngIf="sites" [formGroup]="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+      <div class="mb-3">
+        <label for="title" class="form-label">Titre</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" class="form-control" id="description" formControlName="description"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="picture" class="form-label">Image</label>
+        <input type="file" class="form-control" id="picture" formControlName="picture" accept="image/jpeg, image/png" (change)="file($event)">
+      </div>
+      <div class="mb-3">
+        <label for="url" class="form-label">Lien</label>
+        <input type="text" class="form-control" id="url" formControlName="url">
+      </div>
+      <label class="form-label">Categories</label>
+      <div class="row">
+        <div class="mb-3 form-check col-2" *ngFor="let cat of catArr;">
+          <input class="" type="checkbox" class="form-check-input" [id]="cat.name">
+          <span class="form-check-label">{{cat.name}}</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">{{ id ? "Enregistrer" : "Ajouter"}}</button>
+      <button type="reset" class="btn btn-warning">Effacer</button>
+      <button [routerLink]="'/admin/sites/list'" class="btn btn-danger">Retour</button>
+    </form>
+  </div>
+</section>

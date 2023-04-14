@@ -1,0 +1,49 @@
+<section class="mt-5">
+  <div class="title">
+    <div class="wrapper">
+        <div class="top">Admin Galerie</div>
+        <div class="bottom" aria-hidden="true">Admin Galerie</div>
+    </div>
+</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-6 text-start">
+        <button class="btn btn-primary text-end" [routerLink]="'/admin/sites/list'">Sites</button>
+      </div>
+      <div class="col-6 text-end">
+        <button class="btn btn-success text-end" [routerLink]="'/admin/gallery/create'">Ajouter</button>
+      </div>
+    </div>
+    <hr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Description</th>
+        <th scope="col">Image</th>
+        <th scope="col">Lien</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of gallery">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.title}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.picture}}</td>
+        <td>{{item.url}}</td>
+        <td>
+          <a class="text-warning" [routerLink]="'/admin/gallery/update/' + item.id">
+            <i class="material-icons">edit</i>
+          </a>
+          <a class="text-danger" (click)="delete(item.id)">
+            <i class="material-icons">clear</i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  </section>

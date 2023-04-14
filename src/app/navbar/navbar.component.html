@@ -1,33 +1,68 @@
 <nav class="navbar navbar-expand py-0 nav-gradient">
-    <div class="container-fluid">
-        <div class="mx-auto" id="navbarContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto d-flex justify-content-between align-items-end">
-                <li [id]="'item-' + item.id" *ngFor="let item of menuItems;let index = index;let last = last;"
-                    (mouseenter)="onMouseOver(item.id)" (mouseleave)="onMouseOut(item.id)"
-                    [class]="'text-center mx-1 nav-item item-' + index">
-                    <a class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
-                        [routerLink]="item.route" routerLinkActive="nav-link-active">
-                        <span class="vertical">
-                            {{item.name}}
-                        </span>
-                        <br>
-                        <i class="material-icons rounded-circle border-0 border-light text-center p-1">{{item.icon}}</i>
-                    </a>
-                </li>
-                <li *ngIf="konamiOk" id="item-4" class="nav-item item-secret" (mouseenter)="onMouseOver(4)"
-                    (mouseleave)="onMouseOut(4)">
-                    <a class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
-                        [href]="server" target="_blank">
-                        <span class="vertical">
-                            API
-                        </span>
-                        <br>
-                        <i class="material-icons">api</i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <a class="navbar-brand text-end position-fixed end-0" routerLink="/"><img src="assets/img/logo-nt-blanc.png"
-                alt="logo" class="w-15"></a>
+  <div class="container-fluid">
+    <div class="mx-auto" id="navbarContent">
+      <ul
+        class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto d-flex justify-content-between align-items-end"
+      >
+        <li
+          [id]="'item-' + item.id"
+          *ngFor="let item of menuItems; let index = index; let last = last"
+          (mouseenter)="onMouseOver(item.id)"
+          (mouseleave)="onMouseOut(item.id)"
+          [class]="'text-center mx-1 nav-item item-' + index"
+        >
+          <a
+            class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
+            [routerLink]="item.route"
+            routerLinkActive="nav-link-active"
+          >
+            <span class="vertical">
+              {{ item.name }}
+            </span>
+            <br />
+            <i
+              class="material-icons rounded-circle border-0 border-light text-center p-1"
+              >{{ item.icon }}</i
+            >
+          </a>
+        </li>
+        <li
+          *ngIf="konamiOk"
+          id="item-4"
+          class="text-center mx-1 nav-item item-4"
+          (mouseenter)="onMouseOver(4)"
+          (mouseleave)="onMouseOut(4)"
+        >
+          <a
+            class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
+            [href]="server"
+            target="_blank"
+          >
+            <span class="vertical"> API </span>
+            <br />
+            <i class="material-icons rounded-circle border-0 border-light text-center p-1">api</i>
+          </a>
+        </li>
+        <li
+          *ngIf="konamiOk"
+          id="item-5"
+          class="text-center mx-1 nav-item item-5"
+          (mouseenter)="onMouseOver(5)"
+          (mouseleave)="onMouseOut(5)"
+        >
+          <a
+            class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
+            [routerLink]="'/login'"
+          >
+            <span class="vertical"> Admin </span>
+            <br />
+            <i class="material-icons rounded-circle border-0 border-light text-center p-1">lock</i>
+          </a>
+        </li>
+      </ul>
     </div>
+    <a class="text-end position-fixed end-0 me-1" routerLink="/" style="width: 40px; height:50px;"
+      ><img src="assets/img/logo-nt-blanc.png" alt="logo"
+    /></a>
+  </div>
 </nav>

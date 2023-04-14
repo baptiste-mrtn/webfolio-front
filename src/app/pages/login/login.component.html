@@ -1,13 +1,19 @@
 <section class="login mt-5">
+  <div class="title">
+    <div class="wrapper">
+        <div class="top">Connexion</div>
+        <div class="bottom" aria-hidden="true">Connexion</div>
+    </div>
+</div>
   <div class="container">
     <form [formGroup]="loginForm" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
       <div class="mb-3">
         <label for="username" class="form-label">Email</label>
-        <input type="email" class="form-control" id="username" formControlName="username">
+        <input type="email" class="form-control" id="username" formControlName="username" name="username">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" id="password" formControlName="password">
+        <input type="password" class="form-control" id="password" formControlName="password" name="password">
       </div>
       <!-- <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
