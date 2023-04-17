@@ -1,11 +1,67 @@
 <section class="contact container mt-5">
-    <div class="title">
-        <div class="wrapper">
-            <div class="top">Contact</div>
-            <div class="bottom" aria-hidden="true">Contact</div>
+  <div class="title">
+    <div class="wrapper">
+      <div class="top">Contact</div>
+      <div class="bottom" aria-hidden="true">Contact</div>
+    </div>
+  </div>
+  <div class="mx-auto">
+    <form [formGroup]="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+      <div class="row">
+        <div class="col-6 mb-3">
+          <label for="name" class="form-label">Nom Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            formControlName="name"
+            required
+          />
         </div>
-    </div>
-    <div class="mx-auto">
-
-    </div>
+        <div class="col-6 mb-3">
+          <label for="mail" class="form-label">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mail"
+            formControlName="mail"
+            required
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+            [class.is-invalid]="form.get('mail').invalid && form.get('mail').touched"
+          />
+        </div>
+        <div *ngIf="form.get('mail').invalid && form.get('mail').touched || form.get('mail').dirty">
+          <small class="text-danger"
+            >Veuillez renseigner un email valide</small
+          >
+        </div>
+        <div class="col-6 mb-3">
+          <label for="obj" class="form-label">Objet</label>
+          <input
+            type="text"
+            class="form-control"
+            id="obj"
+            formControlName="obj"
+            required
+          />
+        </div>
+        <div class="col-12 mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea
+            type="text"
+            class="form-control"
+            id="message"
+            formControlName="message"
+            required
+          ></textarea>
+        </div>
+        <div class="col-6 text-start">
+          <button type="submit" class="btn btn-success">Envoyer</button>
+        </div>
+        <div class="col-6 text-end required">
+          <button type="reset" class="btn btn-warning">Effacer</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </section>
