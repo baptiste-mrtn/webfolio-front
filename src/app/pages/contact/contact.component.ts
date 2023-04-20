@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AppToastService } from 'src/app/interfaces/toast-info';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -11,11 +11,9 @@ import { AppToastService } from 'src/app/interfaces/toast-info';
 })
 export class ContactComponent {
   constructor(
-    private fb: FormBuilder,
     private toastService: AppToastService,
     private router: Router,
-    private route: ActivatedRoute,
-    private http: HttpClient
+    private contactService: ContactService
   ) {}
   form: any;
 
@@ -29,8 +27,16 @@ export class ContactComponent {
   }
 
   submit(form:any){
-    if(form.valid){
-      console.log("ok")
-    }
+      console.log(form)
+      this.contactService.postMessage(form)
+      .subscribe(response => {
+      this.toastService.showSuccess("Message envoyé");
+      this.router.navigateByUrl('/home');
+      console.log(response)
+      }, error => {
+      this.toastService.showDanger("Une erreur est survenue");
+      console.warn(error.responseText)
+      console.log({ error })
+      })
   }
 }

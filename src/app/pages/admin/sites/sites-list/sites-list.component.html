@@ -6,14 +6,15 @@
     </div>
 </div>
   <div class="container">
-  <div class="row">
-    <div class="col-6 text-start">
-      <button class="btn btn-primary text-end" [routerLink]="'/admin/gallery/list'">Galerie</button>
+    <div class="row">
+      <div class="col-6 text-start">
+        <button class="btn btn-primary text-start" [routerLink]="'/admin/gallery/list'">Galerie</button>
+        <button class="btn btn-primary text-end" [routerLink]="'/admin/users/list'">Utilisateurs</button>
+      </div>
+      <div class="col-6 text-end">
+        <button class="btn btn-success text-end" [routerLink]="'/admin/sites/create'">Ajouter</button>
+      </div>
     </div>
-    <div class="col-6 text-end">
-      <button class="btn btn-success text-end" [routerLink]="'/admin/sites/create'">Ajouter</button>
-    </div>
-  </div>
   <hr>
     <div class="row text-light border-bottom my-2">
       <div scope="col" class="col-2 d-none d-xl-block"><span>Titre</span></div>

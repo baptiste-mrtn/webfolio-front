@@ -13,7 +13,13 @@ import { SitesListComponent } from './admin/sites/sites-list/sites-list.componen
 import { SitesEditComponent } from './admin/sites/sites-edit/sites-edit.component';
 import { GalleryListComponent } from './admin/gallery/gallery-list/gallery-list.component';
 import { GalleryEditComponent } from './admin/gallery/gallery-edit/gallery-edit.component';
-
+import { ProfilComponent } from './profil/profil.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { UsersListComponent } from './admin/users/users-list/users-list.component';
+import { UsersEditComponent } from './admin/users/users-edit/users-edit.component';
+import { SitesReadComponent } from './sites/sites-read/sites-read.component';
+import { GalleryReadComponent } from './gallery/gallery-read/gallery-read.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     routingComponents,
@@ -27,6 +33,11 @@ import { GalleryEditComponent } from './admin/gallery/gallery-edit/gallery-edit.
     SitesEditComponent,
     GalleryListComponent,
     GalleryEditComponent,
+    ProfilComponent,
+    UsersListComponent,
+    UsersEditComponent,
+    SitesReadComponent,
+    GalleryReadComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +47,8 @@ import { GalleryEditComponent } from './admin/gallery/gallery-edit/gallery-edit.
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTabsModule,
+    NgbRatingModule
   ],
 })
 export class PagesModule {}

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { SERVER_URL } from 'src/environments/environment';
+import { Router, ActivatedRoute, ChildrenOutletContexts } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { SERVER_URL } from 'src/environments/environment';
 })
 
 export class NavbarComponent {
-  constructor() {
+  constructor(private router: Router) {
     this.konami = new EventEmitter<void>();
     this.sequence = [];
     this.konamiCode = [
@@ -29,8 +30,12 @@ export class NavbarComponent {
   server: string = SERVER_URL;
   menuItems: any = [];
   width: any = null;
+  ls = JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
+  connected:boolean=false;
+
   ngOnInit() {
     this.initMenuItems();
+    this.checkLogin();
   }
 
   initMenuItems() {
@@ -71,5 +76,12 @@ export class NavbarComponent {
 
   isKonamiCode(): boolean {
     return this.konamiCode.every((code: string, index: number) => code === this.sequence[index]);
+  }
+  checkLogin(){
+    if(this.ls.token != 'NULL'){
+      this.connected = true;
+    } else {
+      this.connected = false;
+    }
   }
 }

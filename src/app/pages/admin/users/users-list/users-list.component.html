@@ -1,0 +1,45 @@
+<section class="mt-5">
+  <div class="title">
+    <div class="wrapper">
+        <div class="top">Admin Users</div>
+        <div class="bottom" aria-hidden="true">Admin Users</div>
+    </div>
+</div>
+  <div class="container">
+  <div class="row">
+    <div class="col-6 text-start">
+      <button class="btn btn-primary text-start" [routerLink]="'/admin/sites/list'">Sites</button>
+      <button class="btn btn-primary text-end" [routerLink]="'/admin/gallery/list'">Galerie</button>
+    </div>
+    <div class="col-6 text-end">
+      <button class="btn btn-success text-end" [routerLink]="'/admin/users/create'">Ajouter</button>
+    </div>
+  </div>
+  <hr>
+    <div class="row text-light border-bottom my-2">
+      <div scope="col" class="col-2 d-none d-xl-block"><span>Utilisateur</span></div>
+      <div scope="col" class="col-4 d-none d-xl-block"><span>E-mail</span></div>
+      <div scope="col" class="col-3 d-none d-xl-block"><span>Rôles</span></div>
+      <div scope="col" class="col-1 d-none d-xl-block"><span>Commentaires</span></div>
+      <div scope="col" class="col-2 d-none d-xl-block"><span></span></div>
+    </div>
+    <div *ngFor="let item of users; let i = index;">
+      <div class="row align-items-center" [class]="i%2 === 0 ? 'bg-table' : ''">
+      <div class="col-12 col-md-6 col-xl-3"><span>{{item.firstName + " " + item.lastName}}</span></div>
+      <div class="col-12 col-md-6 col-xl-2"><span>{{item.email}}</span></div>
+      <div class="col-12 col-md-6 col-xl-2"><span *ngFor="let role of item.roles">{{role}}</span></div>
+      <div class="col-12 col-md-6 col-xl-3"><span *ngFor="let com of item.comments">{{com}}</span></div>
+      <div class="col-12 col-md-6 col-xl-2 text-end">
+        <a class="rounded-circle text-light p-2" [href]="item.url" target="_blank" [title]="item.url"><i class="material-icons">input</i></a>
+        <a class="text-warning" [routerLink]="'/admin/users/update/' + item.idcrypt">
+          <i class="material-icons">edit</i>
+        </a>
+        <a class="text-danger" (click)="delete(item.idcrypt)">
+          <i class="material-icons">clear</i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>

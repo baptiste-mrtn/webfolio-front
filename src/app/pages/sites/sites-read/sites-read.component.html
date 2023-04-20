@@ -1,0 +1,52 @@
+<section class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h3>{{ site.title }}</h3>
+        <p>{{ site.description }}</p>
+        <ngb-rating [(rate)]="moy" [max]="4" formControlName="rate" [readonly]="true"></ngb-rating>
+      </div>
+      <div class="col-6">
+        <a [href]="site.url" target="_blank">
+          <iframe [src]="site.url" frameborder="0"></iframe>
+        </a>
+      </div>
+    </div>
+    <div *ngIf="ls.token === 'NULL';else rateBlock" >
+      <span class="border border-light rounded ">
+        Vous devez être connecté pour laisser un avis
+      </span>
+      <button class="btn btn-primary" routerLink="/login">Se connecter</button>
+    </div>
+    <ng-template #rateBlock >
+      <form [formGroup]="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+        <div class="mb-3">
+          <label for="rate" class="form-label">Note</label>
+          <ngb-rating [(rate)]="form.rate" [max]="4" formControlName="rate" [readonly]="false"></ngb-rating>
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Titre</label>
+          <input type="text" class="form-control" id="title" formControlName="title">
+        </div>
+        <div class="mb-3">
+          <label for="comment" class="form-label">Description</label>
+          <textarea type="text" class="form-control" id="comment" formControlName="comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Ajouter</button>
+      </form>
+    </ng-template>
+    <div>
+      <div class="row" *ngFor="let item of site.comments">
+        <ngb-rating class="col-4" [(rate)]="item.rate" [max]="4" formControlName="rate" [readonly]="true"></ngb-rating>
+        <div class="col-4">
+          <h6>{{item.title}}</h6>
+          <p>{{item.comment}}</p>
+        </div>
+        <div class="col-4">
+          <span>{{item.author}}</span>
+          <small>{{item.createdAt}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

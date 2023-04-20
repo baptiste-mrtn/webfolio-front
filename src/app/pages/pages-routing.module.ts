@@ -9,7 +9,9 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from '../services/auth.guard';
-// import { LoginComponent } from './login/login.component';
+import { ProfilComponent } from './profil/profil.component';
+import { SitesReadComponent } from './sites/sites-read/sites-read.component';
+import { GalleryReadComponent } from './gallery/gallery-read/gallery-read.component';
 // import { PassLostComponent } from './pass-lost/pass-lost.component';
 // import { PassNewComponent } from './pass-new/pass-new.component';
 
@@ -18,10 +20,13 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profil', component: ProfilComponent },
   { path: 'infos', component: InfosComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'sites', component: SitesComponent },
+  { path: 'sites/read/:id', component: SitesReadComponent },
   { path: 'gallery', component: GalleryComponent },
+  { path: 'gallery/read/:id', component: GalleryReadComponent },
   {
     path: 'admin/sites',
     canActivate: [AuthGuard],
@@ -35,6 +40,13 @@ const routes: Routes = [
     data: { role: 'ROLE_USER' },
     loadChildren: () =>
       import('./admin/gallery/gallery.module').then((mod) => mod.GalleryModule),
+  },
+  {
+    path: 'admin/users',
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_USER' },
+    loadChildren: () =>
+      import('./admin/users/users.module').then((mod) => mod.UsersModule),
   },
   // { path: 'public', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   // { path: 'public_dl', loadChildren: () => import('./token/token.module').then(m => m.TokenModule) },
@@ -54,7 +66,6 @@ export class AppRoutingModule {}
 export const routingComponents = [
   HomeComponent,
   PageNotFoundComponent,
-  // LoginComponent,
   // PassLostComponent,
   // PassNewComponent,
   // AuthFactorsComponent

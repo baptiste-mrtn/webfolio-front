@@ -1,0 +1,10 @@
+.nav-link:hover {
+  border-radius: var(--bs-border-radius) !important;
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity)) !important;
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-dark-rgb),var(--bs-text-opacity)) !important;
+  --bs-border-opacity: 1;
+  border-color: rgba(var(--bs-light-rgb),var(--bs-border-opacity)) !important;
+  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
