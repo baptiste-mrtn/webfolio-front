@@ -1,50 +1,52 @@
-<section class="mt-5">
+<section class="mt-5" *ngIf="site">
   <div class="container">
     <div class="row">
       <div class="col-6">
         <h3>{{ site.title }}</h3>
         <p>{{ site.description }}</p>
-        <ngb-rating [(rate)]="moy" [max]="4" formControlName="rate" [readonly]="true"></ngb-rating>
+        <ngb-rating class="fs-2" [(rate)]="moy" [max]="4" [readonly]="true"></ngb-rating>
       </div>
       <div class="col-6">
-        <a [href]="site.url" target="_blank">
+        <!-- <a [href]="site.url" target="_blank">test
           <iframe [src]="site.url" frameborder="0"></iframe>
-        </a>
+        </a> -->
       </div>
     </div>
-    <div *ngIf="ls.token === 'NULL';else rateBlock" >
-      <span class="border border-light rounded ">
-        Vous devez être connecté pour laisser un avis
-      </span>
-      <button class="btn btn-primary" routerLink="/login">Se connecter</button>
+    <div class="row" *ngIf="ls.token === 'NULL';else rateBlock" >
+      <div class="col-12 text-center border border-light rounded p-4 ">
+        <span class="mb-4">
+          Vous devez être connecté pour laisser un avis
+        </span><br>
+        <button class="btn btn-primary" routerLink="/login">Se connecter</button>
+      </div>
     </div>
     <ng-template #rateBlock >
       <form [formGroup]="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
         <div class="mb-3">
           <label for="rate" class="form-label">Note</label>
-          <ngb-rating [(rate)]="form.rate" [max]="4" formControlName="rate" [readonly]="false"></ngb-rating>
+          <ngb-rating class="fs-2 text-center" id="rate" [(rate)]="currentRate" [max]="4" formControlName="rate" [readonly]="false"></ngb-rating>
         </div>
         <div class="mb-3">
           <label for="title" class="form-label">Titre</label>
           <input type="text" class="form-control" id="title" formControlName="title">
         </div>
         <div class="mb-3">
-          <label for="comment" class="form-label">Description</label>
+          <label for="comment" class="form-label">Commentaire</label>
           <textarea type="text" class="form-control" id="comment" formControlName="comment"></textarea>
         </div>
         <button type="submit" class="btn btn-success">Ajouter</button>
       </form>
     </ng-template>
     <div>
-      <div class="row" *ngFor="let item of site.comments">
-        <ngb-rating class="col-4" [(rate)]="item.rate" [max]="4" formControlName="rate" [readonly]="true"></ngb-rating>
-        <div class="col-4">
-          <h6>{{item.title}}</h6>
+      <div class="row border-bottom" *ngFor="let item of site.reviews; let i=index;"  [class]="i%2 === 0 ? 'bg-table' : ''">
+        <ngb-rating class="col-2 fs-4" [(rate)]="item.rate" [max]="4" [readonly]="true"></ngb-rating>
+        <div class="col-6">
+          <h4>{{item.title}}</h4>
           <p>{{item.comment}}</p>
         </div>
         <div class="col-4">
-          <span>{{item.author}}</span>
-          <small>{{item.createdAt}}</small>
+          <span>{{item.author}}</span><br>
+          <small>{{item.createdAt | date:"dd/MM/YYYY HH:mm"}}</small>
         </div>
       </div>
     </div>

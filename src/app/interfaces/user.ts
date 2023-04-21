@@ -6,4 +6,5 @@ export interface User extends BaseEntity{
   email:string;
   roles:[];
   password: string;
+  commments?:any;
 }

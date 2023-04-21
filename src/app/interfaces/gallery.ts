@@ -5,5 +5,7 @@ export interface Gallery extends BaseEntity {
   title: string;
   description: string;
   picture: string;
-  categories: Category[];
+  categories?: Category[];
+  createdAt: Date;
+  reviews?: any;
 }
