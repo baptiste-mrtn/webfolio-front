@@ -38,7 +38,7 @@ export class SitesReadComponent {
       })
     }
     this.site = {id:1,title:"test", description:"test",createdAt:new Date(), url:"https://google.fr", picture:"https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive.jpg", reviews:[{title:"cool", comment:"c'est sympa", rate:3, author:"jean Dupont", createdAt:new Date()}]}
-    this.ls.token = "NULL";
+    //this.ls.token = "NULL";
   }
 
   getMoyenneReviews(){

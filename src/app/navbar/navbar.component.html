@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand py-0 nav-gradient">
   <div class="container-fluid">
     <a
-    class="text-start position-fixed start-0 ms-1"
-    routerLink="/"
-    style="width: 40px; height: 50px"
-    ><img src="assets/img/logo-nt-blanc.png" alt="logo"
-  /></a>
+      class="text-start position-fixed start-0 ms-1"
+      routerLink="/"
+      style="width: 40px; height: 50px"
+      ><img src="assets/img/logo-nt-blanc.png" alt="logo"
+    /></a>
     <div class="mx-auto" id="navbarContent">
       <ul
         class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto d-flex justify-content-between align-items-end"
@@ -18,7 +18,7 @@
           [class]="'text-center mx-1 nav-item item-' + index"
         >
           <a
-            class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
+            class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill rounded-top"
             [routerLink]="item.route"
             routerLinkActive="nav-link-active"
           >
@@ -32,51 +32,77 @@
             >
           </a>
         </li>
-        <li
-          *ngIf="konamiOk"
-          id="item-4"
-          class="text-center mx-1 nav-item item-4"
-          (mouseenter)="onMouseOver(4)"
-          (mouseleave)="onMouseOut(4)"
-        >
-          <a
-            class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
-            [href]="server"
-            target="_blank"
-          >
-            <span class="vertical"> API </span>
-            <br />
-            <i
-              class="material-icons rounded-circle border-0 border-light text-center p-1"
-              >api</i
-            >
-          </a>
-        </li>
-        <li
-          *ngIf="konamiOk"
-          id="item-5"
-          class="text-center mx-1 nav-item item-5"
-          (mouseenter)="onMouseOver(5)"
-          (mouseleave)="onMouseOut(5)"
-        >
-          <a
-            class="nav-link text-light text-uppercase bg-dark border border-light rounded-pill"
-            [routerLink]="'/login'"
-          >
-            <span class="vertical"> Admin </span>
-            <br />
-            <i
-              class="material-icons rounded-circle border-0 border-light text-center p-1"
-              >lock</i
-            >
-          </a>
-        </li>
       </ul>
     </div>
-    <a
-    class="text-end position-fixed end-0 me-1 rounded-circle border border-rounded text-center fs-2"
-    [routerLink]="connected ? '/profil':'/login'"
-    style="width: 50px; height: 50px"
-    ><i class="material-icons text-light mt-2">person</i></a>
+    <div class="dropdown" id="menu-drop" ngbDropdown display="dynamic">
+      <a
+        class="text-end position-fixed top-0 end-0 me-1 mt-1 rounded-circle border border-rounded text-center fs-2"
+        role="button"
+        style="width: 50px; height: 50px"
+        id="menu"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        ngbDropdownToggle
+        ><i class="material-icons text-light m-10px">person</i></a
+      >
+      <div
+        class="dropdown-menu bg-dark p-0"
+        aria-labelledby="menu"
+        ngbDropdownMenu
+      >
+        <a
+          *ngIf="connected === false"
+          routerLink="/login"
+          class="dropdown-item text-light rounded"
+          ><i
+          class="material-icons rounded-circle border-0 border-light text-center p-1"
+          >login</i
+        ><span> Connexion </span></a
+        >
+        <a
+          *ngIf="connected === true"
+          routerLink="/profil"
+          class="dropdown-item text-light rounded"
+          >          <i
+          class="material-icons rounded-circle border-0 border-light text-center p-1"
+          >settings</i
+        ><span> Profil </span></a
+        >
+        <a
+          *ngIf="connected === true"
+          class="dropdown-item text-light rounded"
+          (click)="logout()"
+          >          <i
+          class="material-icons rounded-circle border-0 border-light text-center p-1"
+          >logout</i
+        ><span> Déconnexion </span></a
+        >
+        <div *ngIf="konamiOk" class="dropdown-divider text-light"></div>
+        <a
+          *ngIf="konamiOk"
+          class="dropdown-item text-light rounded"
+          [href]="server"
+          target="_blank"
+        >
+          <i
+            class="material-icons rounded-circle border-0 border-light text-center p-1"
+            >api</i
+          >
+          <span> API </span>
+        </a>
+        <a
+          *ngIf="konamiOk"
+          class="dropdown-item text-light rounded"
+          [routerLink]="'/admin/sites/list'"
+        >
+          <i
+            class="material-icons rounded-circle border-0 border-light text-center p-1"
+            >lock</i
+          >
+          <span> Admin </span>
+        </a>
+      </div>
+    </div>
   </div>
 </nav>

@@ -21,7 +21,6 @@ export class AuthenticationService {
   }
 
   public get userValue() {
-    console.log(this.userSubject.value)
     return this.userSubject.value;
   }
 
@@ -41,12 +40,10 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['/home']);
+    window.location.reload();
   }
 
-
-
   hasPermission(){
-    console.log(this.userValue)
     return this.userValue ? true : false;
   }
 }

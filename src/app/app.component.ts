@@ -4,7 +4,7 @@ import { DOCUMENT, Location } from '@angular/common';
 import { slideInAnimation } from './app.animation';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
   title = 'webfolio';
   loggedIn: boolean = false;
   clicked: boolean = true;
-  appService: any;
   constructor(
   private authService: AuthenticationService,
   private contexts: ChildrenOutletContexts,
+  private jwtHelper: JwtHelperService
   ) { }
 
   ls = JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
@@ -33,25 +33,23 @@ export class AppComponent implements OnInit {
     this.authService.logout();
   }
 
-  hasPermission(permission: string) {
-    return this.appService.hasPermission(permission);
+  hasPermission() {
+    return this.authService.hasPermission();
   }
 
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 
-  private isTokenExpired(token: string) {
-    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-    return expiry * 1000 > Date.now();
-  }
-
   ngOnInit():void {
     let token = this.ls.token;
-    if (this.isTokenExpired(token)) {
+    let userValue = this.ls.data
+    if (this.jwtHelper.isTokenExpired(token)) {
+      // token expired
       this.logout();
     } else {
-      this.hasPermission(token);
+      // token valid
+      this.hasPermission();
     }
   }
 

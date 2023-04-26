@@ -3,24 +3,24 @@
     <form *ngIf="sites" [formGroup]="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
       <div class="mb-3">
         <label for="title" class="form-label">Titre</label>
-        <input type="text" class="form-control" id="title" formControlName="title">
+        <input type="text" class="form-control" id="title" formControlName="title" [value]="sites.title">
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea type="text" class="form-control" id="description" formControlName="description"></textarea>
+        <textarea type="text" class="form-control" id="description" formControlName="description" [value]="sites.description"></textarea>
       </div>
       <div class="mb-3">
         <label for="picture" class="form-label">Image</label>
-        <input type="file" class="form-control" id="picture" formControlName="picture" accept="image/jpeg, image/png" (change)="file($event)">
+        <input type="file" class="form-control" id="picture" accept="image/jpeg, image/png" (change)="file($event)">
       </div>
       <div class="mb-3">
         <label for="url" class="form-label">Lien</label>
-        <input type="text" class="form-control" id="url" formControlName="url">
+        <input type="text" class="form-control" id="url" formControlName="url" [value]="sites.url">
       </div>
       <label class="form-label">Categories</label>
       <div class="row">
         <div class="mb-3 form-check col-2" *ngFor="let cat of catArr;">
-          <input class="" type="checkbox" class="form-check-input" [id]="cat.name">
+          <input class="" type="checkbox" class="form-check-input" [id]="cat.id" (change)="catSelected(cat)" [checked]="isChecked(cat.name)">
           <span class="form-check-label">{{cat.name}}</span>
         </div>
       </div>

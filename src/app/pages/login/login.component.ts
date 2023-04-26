@@ -36,7 +36,7 @@ export class LoginComponent {
     this.authService.login(form.value.username, form.value.password).subscribe(
       (response: any) => {
         this.toastService.showSuccess('Connexion réussie');
-        this.router.navigate(['/admin/sites/list']);
+        this.router.navigate(['/home']);
         console.log(response);
       },
       (error: any) => {

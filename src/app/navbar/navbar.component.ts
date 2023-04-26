@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { SERVER_URL } from 'src/environments/environment';
 import { Router, ActivatedRoute, ChildrenOutletContexts } from '@angular/router';
-
+import { AuthenticationService } from '../services/authentication.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, ChildrenOutletContexts } from '@angular/router'
 })
 
 export class NavbarComponent {
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthenticationService) {
     this.konami = new EventEmitter<void>();
     this.sequence = [];
     this.konamiCode = [
@@ -83,5 +83,9 @@ export class NavbarComponent {
     } else {
       this.connected = false;
     }
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }

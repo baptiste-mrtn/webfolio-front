@@ -17,11 +17,9 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const user = this.authenticationService.userValue;
       if (user) {
-            console.log("if (user)")
             // check if route is restricted by role
-          const { roles } = route.data;
-          if (roles && !roles.includes(user.roles)) {
-            console.log("if (roles && !roles.includes(user.roles))")
+          const { roles } = route.data["roles"];
+          if (roles && !roles.includes(user.data.roles)) {
               // role not authorized so redirect to login
               this.router.navigate(['/login']);
               return false;

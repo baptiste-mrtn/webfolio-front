@@ -30,21 +30,21 @@ const routes: Routes = [
   {
     path: 'admin/sites',
     canActivate: [AuthGuard],
-    data: { role: 'ROLE_USER' },
+    data: { roles: 'ROLE_ADMIN' },
     loadChildren: () =>
       import('./admin/sites/sites.module').then((mod) => mod.SitesModule),
   },
   {
     path: 'admin/gallery',
     canActivate: [AuthGuard],
-    data: { role: 'ROLE_USER' },
+    data: { roles: 'ROLE_ADMIN' },
     loadChildren: () =>
       import('./admin/gallery/gallery.module').then((mod) => mod.GalleryModule),
   },
   {
     path: 'admin/users',
     canActivate: [AuthGuard],
-    data: { role: 'ROLE_USER' },
+    data: { roles: 'ROLE_ADMIN' },
     loadChildren: () =>
       import('./admin/users/users.module').then((mod) => mod.UsersModule),
   },

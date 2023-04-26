@@ -15,6 +15,11 @@ export class BaseService {
     Authorization: `Bearer ${this.ls.token}`,
   });
 
+  headersImage = new HttpHeaders({
+    //'Content-Type': 'multipart/form-data',
+    Authorization: `Bearer ${this.ls.token}`,
+  });
+
   getEntityUrl() {
     return '';
   }
@@ -49,21 +54,21 @@ export class BaseService {
 
   public delete(id: any) {
     return firstValueFrom(
-      this.httpClient.delete(SERVER_URL + '/api/' + this.getEntityUrl() +'/' + id, {
+      this.httpClient.delete(SERVER_URL + '/api/' + this.getEntityUrl() +'/delete/' + id, {
         headers: this.headersUser,
       })
     );
   }
 
   postFile(fileToUpload: File, blob?: Blob) {
-    console.log(fileToUpload);
     const endpoint = SERVER_URL + '/api/' +  this.getEntityUrl() +'/file';
     const formData: FormData = new FormData();
-    formData.append('picture', fileToUpload, fileToUpload.name);
+    console.log(fileToUpload, blob)
+    formData.append('picture', fileToUpload, fileToUpload.name); //, fileToUpload.name
     console.log(formData.get('picture'));
     return firstValueFrom(
       this.httpClient.post(endpoint, formData, {
-        headers: this.headersUser,
+        headers: this.headersImage,
       })
     );
   }

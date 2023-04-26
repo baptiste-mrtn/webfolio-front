@@ -28,7 +28,7 @@
       <div class="col-6 col-xl-2"><span>{{item.title}}</span></div>
       <div class="col-6 col-xl-4"><span>{{item.description}}</span></div>
       <div class="col-6 col-xl-3"><span><img [src]="url + item.picture" [alt]="item.title" style="width:50%;"></span></div>
-      <div class="col-6 col-xl-1"><span *ngFor="let cat of item.categories">{{cat}}</span></div>
+      <div class="col-6 col-xl-1"><span *ngFor="let cat of item.categories">{{cat.name}} | </span></div>
       <div class="col-6 col-xl-2 text-end">
         <a class="rounded-circle text-light p-2" [href]="item.url" target="_blank" [title]="item.url"><i class="material-icons">input</i></a>
         <a class="text-warning" [routerLink]="'/admin/sites/update/' + item.idcrypt">

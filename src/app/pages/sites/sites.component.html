@@ -15,7 +15,7 @@
                   <span class="m-1">{{item.description}}</span>
                   <div *ngIf="item.categories" class="d-flex justify-content-center align-items-center mx-2">
                     <small *ngFor="let cat of item.categories"
-                    class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark">{{cat}}</small>
+                    class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark">{{cat.name}}</small>
                   </div>
                 </div>
               </a>

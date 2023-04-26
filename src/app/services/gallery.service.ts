@@ -7,6 +7,6 @@ import { BaseService } from './base.service';
 export class GalleryService extends BaseService {
 
   override getEntityUrl(){
-    return "sites";
+    return "gallery";
   }
 }
