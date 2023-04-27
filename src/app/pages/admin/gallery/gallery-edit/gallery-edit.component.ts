@@ -107,7 +107,7 @@ export class GalleryEditComponent {
 
   async uploadFile(file: any) {
     if (file) {
-      await this.service.postFile(file).then(
+      await this.service.postFile(file, this.blob).then(
         (data: any) => {
           console.log('send success');
         },
@@ -127,6 +127,7 @@ export class GalleryEditComponent {
           ''
         );
       });
+
     } else {
       form.value.picture = this.gallery.picture;
     }

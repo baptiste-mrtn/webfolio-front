@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AppToastService } from 'src/app/interfaces/toast-info';
 import { User } from 'src/app/interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { BaseService } from 'src/app/services/base.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private toastService: AppToastService,
+    private baseService: BaseService,
     private router: Router
   ) {}
 
@@ -36,7 +38,7 @@ export class LoginComponent {
     this.authService.login(form.value.username, form.value.password).subscribe(
       (response: any) => {
         this.toastService.showSuccess('Connexion réussie');
-        this.router.navigate(['/home']);
+        this.baseService.reloadAfterSeconds(3);
         console.log(response);
       },
       (error: any) => {

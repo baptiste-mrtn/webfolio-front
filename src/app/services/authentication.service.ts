@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, firstValueFrom, map } from 'rxjs';
 import { SERVER_URL, environment } from 'src/environments/environment';
 import { User } from '../interfaces/user';
+import { AppToastService } from '../interfaces/toast-info';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class AuthenticationService {
   private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
 
-  constructor(private router: Router, private httpClient: HttpClient) {
+  constructor(private router: Router, private httpClient: HttpClient, private toastService: AppToastService, private baseService: BaseService) {
     this.userSubject = new BehaviorSubject(
       JSON.parse(localStorage.getItem('user')!)
     );
@@ -39,8 +41,8 @@ export class AuthenticationService {
     // remove user from local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/home']);
-    window.location.reload();
+    this.toastService.show("Vous avez été déconnecté, la page va être rechargée")
+    this.baseService.reloadAfterSeconds(3);
   }
 
   hasPermission(){

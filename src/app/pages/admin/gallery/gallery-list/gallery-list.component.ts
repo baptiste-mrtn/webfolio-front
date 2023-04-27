@@ -28,11 +28,11 @@ export class GalleryListComponent {
       (datas) =>  {
         console.log(datas);
         this.toastService.showSuccess('Élement supprimé');
+        this.service.reloadAfterSeconds(3);
       },
       (error) => {
         this.toastService.showDanger('Une erreur est survenue: ' + error);
       }
       );
-      window.location.reload();
   }
 }

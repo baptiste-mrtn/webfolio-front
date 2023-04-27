@@ -72,4 +72,9 @@ export class BaseService {
       })
     );
   }
+
+  reloadAfterSeconds(s:number){
+    let ms = s*1000;
+    setTimeout(function(){ window.location.reload(); }, ms);
+  }
 }

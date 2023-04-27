@@ -1,10 +1,9 @@
-import { Component, OnInit, HostListener, Inject } from '@angular/core';
-import { Router, ActivatedRoute, ChildrenOutletContexts } from '@angular/router';
-import { DOCUMENT, Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ChildrenOutletContexts } from '@angular/router';
 import { slideInAnimation } from './app.animation';
-import { HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AppToastService } from './interfaces/toast-info';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +20,8 @@ export class AppComponent implements OnInit {
   constructor(
   private authService: AuthenticationService,
   private contexts: ChildrenOutletContexts,
-  private jwtHelper: JwtHelperService
+  private jwtHelper: JwtHelperService,
+  private toastService: AppToastService,
   ) { }
 
   ls = JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
     let userValue = this.ls.data
     if (this.jwtHelper.isTokenExpired(token)) {
       // token expired
+      this.toastService.show("Votre délai de connexion est dépassé, veuillez vous reconnecter");
       this.logout();
     } else {
       // token valid

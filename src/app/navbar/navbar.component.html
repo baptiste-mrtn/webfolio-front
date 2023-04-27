@@ -54,24 +54,26 @@
         <a
           *ngIf="connected === false"
           routerLink="/login"
-          class="dropdown-item text-light rounded"
+          class="dropdown-item text-light rounded d-flex align-items-center"
           ><i
           class="material-icons rounded-circle border-0 border-light text-center p-1"
           >login</i
         ><span> Connexion </span></a
         >
-        <a
+        <!--
+          <a
           *ngIf="connected === true"
           routerLink="/profil"
-          class="dropdown-item text-light rounded"
+          class="dropdown-item text-light rounded d-flex align-items-center"
           >          <i
           class="material-icons rounded-circle border-0 border-light text-center p-1"
           >settings</i
-        ><span> Profil </span></a
-        >
+          ><span> Profil </span></a
+          >
+        -->
         <a
           *ngIf="connected === true"
-          class="dropdown-item text-light rounded"
+          class="dropdown-item text-light rounded d-flex align-items-center"
           (click)="logout()"
           >          <i
           class="material-icons rounded-circle border-0 border-light text-center p-1"
@@ -81,7 +83,7 @@
         <div *ngIf="konamiOk" class="dropdown-divider text-light"></div>
         <a
           *ngIf="konamiOk"
-          class="dropdown-item text-light rounded"
+          class="dropdown-item text-light rounded d-flex align-items-center"
           [href]="server"
           target="_blank"
         >
@@ -93,7 +95,7 @@
         </a>
         <a
           *ngIf="konamiOk"
-          class="dropdown-item text-light rounded"
+          class="dropdown-item text-light rounded d-flex align-items-center"
           [routerLink]="'/admin/sites/list'"
         >
           <i

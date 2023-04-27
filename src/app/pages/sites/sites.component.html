@@ -1,25 +1,82 @@
 <section class="sites container mt-5">
-    <div class="title">
-        <div class="wrapper">
-            <div class="top">Sites</div>
-            <div class="bottom" aria-hidden="true">Sites</div>
-        </div>
+  <div class="title">
+    <div class="wrapper">
+      <div class="top">Sites</div>
+      <div class="bottom" aria-hidden="true">Sites</div>
     </div>
-    <div class="border-special bg-dark mx-auto">
-        <ul class="list row pe-4 mt-3">
-            <li *ngFor="let item of sites" class="col-12 col-md-6 col-lg-3 p-2 m-0 pointer">
-              <a [routerLink]="'read/'+item.idcrypt" class="pointer">
-                <img class="rounded-top" [src]="url + item.picture" [alt]="item.title +'-'+ item.description"/>
-                <div class="p-1 rounded-bottom bg-bm">
-                  <span class="m-1">{{item.title}}</span><br>
-                  <span class="m-1">{{item.description}}</span>
-                  <div *ngIf="item.categories" class="d-flex justify-content-center align-items-center mx-2">
-                    <small *ngFor="let cat of item.categories"
-                    class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark">{{cat.name}}</small>
-                  </div>
-                </div>
+  </div>
+  <div class="border-special bg-dark mx-auto">
+    <div class="list row pt-2 px-4 mt-3">
+      <div
+        *ngFor="let item of sites"
+        class="col-6 col-md-3 mb-4 d-flex align-items-stretch"
+      >
+        <!--Card-->
+        <div class="card bg-dark">
+          <!--Card image-->
+          <div class="view overlay">
+            <a [routerLink]="'read/' + item.idcrypt" class="pointer">
+              <img
+              class="rounded-top"
+              [src]="url + item.picture"
+              [alt]="item.title + '-' + item.description"
+              />
+              <a href="#">
+                <div class="mask rgba-white-slight"></div>
               </a>
-            </li>
-          </ul>
+            </a>
+          </div>
+
+          <!--Card content-->
+          <div class="card-body bg-bm rounded-bottom">
+            <!--Title-->
+            <h4 class="card-title">{{ item.title }}</h4>
+            <!--Text-->
+            <p class="card-text">{{ item.description }}</p>
+            <div
+              *ngIf="item.categories"
+              class="d-flex justify-content-center align-items-center mx-2"
+            >
+              <small
+                *ngFor="let cat of item.categories"
+                class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark"
+                >{{ cat.name }}</small
+              >
+            </div>
+          </div>
+        </div>
+        <!--/.Card-->
+      </div>
+
+      <!--
+      <li
+        *ngFor="let item of sites"
+        class="align-self-stretch col-12 col-md-6 col-lg-3 p-2 m-0 pointer"
+      >
+        <a [routerLink]="'read/' + item.idcrypt" class="pointer">
+          <img
+            class="rounded-top"
+            [src]="url + item.picture"
+            [alt]="item.title + '-' + item.description"
+          />
+          <div class="p-1 rounded-bottom bg-bm align-self-stretch">
+            <span class="m-1">{{ item.title }}</span
+            ><br />
+            <span class="m-1">{{ item.description }}</span>
+            <div
+              *ngIf="item.categories"
+              class="d-flex justify-content-center align-items-center mx-2"
+            >
+              <small
+                *ngFor="let cat of item.categories"
+                class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark"
+                >{{ cat.name }}</small
+              >
+            </div>
+          </div>
+        </a>
+      </li>
+      -->
     </div>
+  </div>
 </section>

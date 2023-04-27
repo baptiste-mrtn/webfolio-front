@@ -93,10 +93,10 @@ h2 {
     content: "";
     position: absolute;
     background-color: rgb(0, 169, 157);
-    width: 40%;
-    height: 220%;
-    left: 30%;
-    top: -60%;
+    width: 25%;
+    height: 320%;
+    left: 40%;
+    top: -100%;
     animation: around 10s linear infinite;
 }
 

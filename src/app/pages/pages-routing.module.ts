@@ -12,8 +12,6 @@ import { AuthGuard } from '../services/auth.guard';
 import { ProfilComponent } from './profil/profil.component';
 import { SitesReadComponent } from './sites/sites-read/sites-read.component';
 import { GalleryReadComponent } from './gallery/gallery-read/gallery-read.component';
-// import { PassLostComponent } from './pass-lost/pass-lost.component';
-// import { PassNewComponent } from './pass-new/pass-new.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -48,13 +46,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/users/users.module').then((mod) => mod.UsersModule),
   },
-  // { path: 'public', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
-  // { path: 'public_dl', loadChildren: () => import('./token/token.module').then(m => m.TokenModule) },
-  // { path: 'pass-lost', component: PassLostComponent },
-  // { path: 'public/changementmotdepasse/:token', component: PassLostSubmitComponent },
-  // { path: 'public/initialisation/:token', component: UserInitComponent },
-  // { path: 'pass-new', component: PassNewComponent },
-  // { path: 'auth-2-factors', component: AuthFactorsComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -65,9 +56,6 @@ const routes: Routes = [
 export class AppRoutingModule {}
 export const routingComponents = [
   HomeComponent,
-  PageNotFoundComponent,
-  // PassLostComponent,
-  // PassNewComponent,
-  // AuthFactorsComponent
+  PageNotFoundComponent
 ];
 export const routing = RouterModule.forChild(routes);

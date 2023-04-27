@@ -1,53 +1,93 @@
 <section class="mt-5" *ngIf="site">
   <div class="container">
-    <div class="row">
+    <div class="row align-items-center p-4">
       <div class="col-6">
-        <h3>{{ site.title }}</h3>
+        <h3 class="text-bm">{{ site.title }}</h3>
         <p>{{ site.description }}</p>
-        <ngb-rating class="fs-2" [(rate)]="moy" [max]="4" [readonly]="true"></ngb-rating>
+        <ngb-rating
+          class="fs-2"
+          [(rate)]="moy"
+          [max]="4"
+          [readonly]="true"
+        ></ngb-rating>
       </div>
-      <div class="col-6">
-        <!-- <a [href]="site.url" target="_blank">test
-          <iframe [src]="site.url" frameborder="0"></iframe>
-        </a> -->
-      </div>
-    </div>
-    <div class="row" *ngIf="ls.token === 'NULL';else rateBlock" >
-      <div class="col-12 text-center border border-light rounded p-4 ">
-        <span class="mb-4">
-          Vous devez être connecté pour laisser un avis
-        </span><br>
-        <button class="btn btn-primary" routerLink="/login">Se connecter</button>
+      <div class="col-6 mx-auto">
+        <a [href]="site.url" target="_blank" title="Go to Site">
+          <img [src]="url + site.picture" />
+        </a>
       </div>
     </div>
-    <ng-template #rateBlock >
-      <form [formGroup]="form" #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+    <div class="row mb-4" *ngIf="ls.token === 'NULL'; else rateBlock">
+      <div class="col-12 text-center border border-light rounded p-4">
+        <span class="mb-4"> Vous devez être connecté pour laisser un avis </span
+        ><br />
+        <button class="btn btn-primary" routerLink="/login">
+          Se connecter
+        </button>
+      </div>
+    </div>
+    <ng-template #rateBlock>
+      <form
+        [formGroup]="form"
+        #f="ngForm"
+        (ngSubmit)="submit(f)"
+        novalidate
+        class="mb-4"
+      >
         <div class="mb-3">
-          <label for="rate" class="form-label">Note</label>
-          <ngb-rating class="fs-2 text-center" id="rate" [(rate)]="currentRate" [max]="4" formControlName="rate" [readonly]="false"></ngb-rating>
+          <div class="text-center">
+            <ngb-rating
+              class="fs-1 text-center"
+              id="rate"
+              [(rate)]="currentRate"
+              [max]="4"
+              formControlName="rate"
+              [readonly]="false"
+            ></ngb-rating>
+          </div>
         </div>
         <div class="mb-3">
           <label for="title" class="form-label">Titre</label>
-          <input type="text" class="form-control" id="title" formControlName="title">
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            formControlName="title"
+          />
         </div>
         <div class="mb-3">
           <label for="comment" class="form-label">Commentaire</label>
-          <textarea type="text" class="form-control" id="comment" formControlName="comment"></textarea>
+          <textarea
+            type="text"
+            class="form-control"
+            id="comment"
+            formControlName="comment"
+          ></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Ajouter</button>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success">Ajouter</button>
+        </div>
       </form>
     </ng-template>
-    <div>
-      <div class="row border-bottom" *ngFor="let item of site.reviews; let i=index;"  [class]="i%2 === 0 ? 'bg-table' : ''">
-        <ngb-rating class="col-2 fs-4" [(rate)]="item.rate" [max]="4" [readonly]="true"></ngb-rating>
-        <div class="col-6">
-          <h4>{{item.title}}</h4>
-          <p>{{item.comment}}</p>
-        </div>
-        <div class="col-4">
-          <span>{{item.author}}</span><br>
-          <small>{{item.createdAt | date:"dd/MM/YYYY HH:mm"}}</small>
-        </div>
+    <div
+      class="row border-bottom py-2"
+      *ngFor="let item of site.reviews; let i = index"
+      [class]="i % 2 === 0 ? 'bg-table' : ''"
+    >
+      <ngb-rating
+        class="col-2 fs-4"
+        [(rate)]="item.rate"
+        [max]="4"
+        [readonly]="true"
+      ></ngb-rating>
+      <div class="col-6">
+        <h4>{{ item.title }}</h4>
+        <p>{{ item.comment }}</p>
+      </div>
+      <div class="col-4">
+        <span>{{ item.author.firstName + " " + item.author.lastName }}</span
+        ><br />
+        <small>{{ item.createdAt | date : "dd/MM/YYYY HH:mm" }}</small>
       </div>
     </div>
   </div>

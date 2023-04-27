@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { JwtModule } from '@auth0/angular-jwt';
 
 
-const ls = JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
+const tokenGetter = ()=>JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
 
 
 @NgModule({
@@ -38,7 +38,7 @@ const ls = JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
     NgbDropdownModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: ls.token,
+        tokenGetter: tokenGetter,
         allowedDomains: ["localhost", "https://martinbaptiste.fr/"],
         disallowedRoutes: ["http://example.com/examplebadroute/"],
       }
