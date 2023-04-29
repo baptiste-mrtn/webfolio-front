@@ -1,5 +1,6 @@
 <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
 <app-navbar></app-navbar>
 <div id="subcontent" [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+  <app-loader></app-loader>
   <router-outlet #o="outlet"></router-outlet>
 </div>

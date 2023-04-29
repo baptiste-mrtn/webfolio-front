@@ -17,9 +17,9 @@
           <div class="view overlay">
             <a [routerLink]="'read/' + item.idcrypt" class="pointer">
               <img
-              class="rounded-top"
-              [src]="url + item.picture"
-              [alt]="item.title + '-' + item.description"
+                class="rounded-top bg-light"
+                [src]="url + item.picture"
+                [alt]="item.title + '-' + item.description"
               />
               <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -28,21 +28,21 @@
           </div>
 
           <!--Card content-->
-          <div class="card-body bg-bm rounded-bottom">
+          <div class="card-body bg-bm rounded-bottom position-relative">
             <!--Title-->
-            <h4 class="card-title">{{ item.title }}</h4>
+            <h4 class="card-title text-center">{{ item.title }}</h4>
             <!--Text-->
             <p class="card-text">{{ item.description }}</p>
-            <div
-              *ngIf="item.categories"
-              class="d-flex justify-content-center align-items-center mx-2"
-            >
-              <small
-                *ngFor="let cat of item.categories"
-                class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark"
-                >{{ cat.name }}</small
+              <div
+                *ngIf="item.categories"
+                class="d-flex justify-content-center align-items-center position-absolute bottom-0 end-0 p-2"
               >
-            </div>
+                <small
+                  *ngFor="let cat of item.categories"
+                  class="small rounded m-1 text-center px-1 bg-light text-dark text-capitalize"
+                  >{{ cat.name }}</small
+                >
+              </div>
           </div>
         </div>
         <!--/.Card-->

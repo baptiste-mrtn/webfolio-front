@@ -10,6 +10,7 @@ import { AppRoutingModule } from './pages/pages-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { JwtModule } from '@auth0/angular-jwt';
+import { LoadingInterceptor } from './loading.interceptor';
 
 
 const tokenGetter = ()=>JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
@@ -44,7 +45,9 @@ const tokenGetter = ()=>JSON.parse(localStorage.getItem('user') || '{"token": "N
       }
     }),
   ],
-  providers: [],
+  providers: [    {
+    provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

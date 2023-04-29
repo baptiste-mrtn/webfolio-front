@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastsComponent } from './components/toasts/toasts.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
-    ToastsComponent
+    ToastsComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { ToastsComponent } from './components/toasts/toasts.component';
     NgbToastModule
   ],
   exports:[
-    ToastsComponent
+    ToastsComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

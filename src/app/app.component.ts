@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
   private jwtHelper: JwtHelperService,
   private toastService: AppToastService,
   ) { }
-
   ls = JSON.parse(localStorage.getItem('user') || '{"token": "NULL"}');
 
   ngOnDestroy() {
@@ -53,5 +52,5 @@ export class AppComponent implements OnInit {
       this.hasPermission();
     }
   }
-
 }
+
