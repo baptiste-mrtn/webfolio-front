@@ -73,6 +73,20 @@ export class BaseService {
     );
   }
 
+  public getCategories() {
+    return firstValueFrom(
+      this.httpClient.get(SERVER_URL + '/api/category/all/', {})
+    );
+  }
+
+  public findByCategory(category: string){
+    return firstValueFrom(
+      this.httpClient.post(SERVER_URL + '/api/' + this.getEntityUrl() +'/find/' + category, {
+        headers: this.headersUser,
+      })
+    );
+  }
+
   reloadAfterSeconds(s:number){
     let ms = s*1000;
     setTimeout(function(){ window.location.reload(); }, ms);

@@ -5,6 +5,11 @@
       <div class="bottom" aria-hidden="true">Sites</div>
     </div>
   </div>
+  <div class="d-flex justify-content-start gx-1 align-items-center mb-4">
+    <div [class]="selected === cat ? 'btn-cat me-2 btn-cat-active' : 'btn-cat me-2'" *ngFor="let cat of categories">
+      <a (click)="findByCat(cat)">{{cat}}</a>
+    </div>
+  </div>
   <div class="border-special bg-dark mx-auto">
     <div class="list row pt-2 px-4 mt-3">
       <div

@@ -1,25 +1,49 @@
-<section class="gallery container mt-5">
-  <div class="title">
+<section class="gallery">
+  <div class="container mt-5">
+    <div class="title">
       <div class="wrapper">
-          <div class="top">Galerie</div>
-          <div class="bottom" aria-hidden="true">Galerie</div>
+        <div class="top">Galerie</div>
+        <div class="bottom" aria-hidden="true">Galerie</div>
       </div>
+    </div>
+    <div class="d-flex justify-content-start gx-1 align-items-center mb-4">
+      <div [class]="selected === cat ? 'btn-cat me-2 btn-cat-active' : 'btn-cat me-2'" *ngFor="let cat of categories">
+        <a (click)="findByCat(cat)">{{cat}}</a>
+      </div>
+    </div>
   </div>
-  <div class="border-special bg-dark mx-auto">
-      <ul class="list row pe-4 mt-3">
-          <li *ngFor="let item of gallery" class="col-12 col-md-6 col-lg-3 p-2 m-0 pointer">
-            <a [routerLink]="'read/'+item.idcrypt" class="pointer">
-              <img class="rounded-top" [src]="url + item.picture" [alt]="item.title +'-'+ item.description"/>
-              <div class="p-1 rounded-bottom bg-bm">
-                <span class="m-1">{{item.title}}</span><br>
-                <span class="m-1">{{item.description}}</span>
-                <div *ngIf="item.categories" class="d-flex justify-content-center align-items-center mx-2">
-                  <small *ngFor="let cat of item.categories"
-                  class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark">{{cat.name}}</small>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-  </div>
+  <ul class="row">
+    <li
+      *ngFor="let item of gallery; let i = index"
+      class="col-6 col-lg-3 p-0 m-2 pointer border border-1 border-light position-relative"
+      (mouseenter)="showHover(i)"
+      (mouseleave)="hideHover(i)"
+    >
+      <a [routerLink]="'read/' + item.idcrypt" class="pointer">
+        <img
+          [src]="url + item.picture"
+          [alt]="item.title + '-' + item.description"
+        />
+      </a>
+
+      <div
+        [id]="'gal' + i"
+        class="position-absolute top-0 end-0 bottom-0 start-0 p-1 bg-trans text-center scale-down-ver-center"
+      >
+      <span class="m-1">{{ item.title }}</span
+          ><br />
+          <span class="m-1 ">{{ item.description }}</span>
+          <div
+          *ngIf="item.categories"
+          class="d-flex justify-content-center align-items-center mx-2 position-absolute end-0 bottom-0"
+          >
+          <small
+          *ngFor="let cat of item.categories"
+          class="small rounded mb-1 me-1 text-center px-1 bg-light text-dark"
+          >{{ cat.name }}</small
+          >
+        </div>
+      </div>
+    </li>
+  </ul>
 </section>
