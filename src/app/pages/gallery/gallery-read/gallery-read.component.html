@@ -1,18 +1,30 @@
 <section class="mt-5" *ngIf="gallery">
   <div class="container">
     <div class="row align-items-center p-4">
-      <div class="col-6">
-        <h3 class="text-bm">{{ gallery.title }}</h3>
+      <div class="col-12 col-md-6 position-relative">
+        <div class="text-center">
+          <ngb-rating
+            class="fs-2"
+            [(rate)]="moy"
+            [max]="4"
+            [readonly]="true"
+          ></ngb-rating>
+        </div>
+        <h3 class="fs-3 text-bm">{{ gallery.title }}</h3>
         <p>{{ gallery.description }}</p>
-        <ngb-rating
-          class="fs-2"
-          [(rate)]="moy"
-          [max]="4"
-          [readonly]="true"
-        ></ngb-rating>
+        <div
+          *ngIf="gallery.categories"
+          class="d-flex justify-content-center align-items-center position-absolute bottom-0 end-0 p-2"
+        >
+          <small
+            *ngFor="let cat of gallery.categories"
+            class="small rounded m-1 text-center px-1 bg-light text-dark text-capitalize"
+            >{{ cat.name }}</small
+          >
+        </div>
       </div>
-      <div class="col-6 mx-auto">
-          <img [src]="url + gallery.picture" />
+      <div class="col-12 col-md-6 mx-auto">
+        <img [src]="url + gallery.picture" />
       </div>
     </div>
     <div class="row mb-4" *ngIf="ls.token === 'NULL'; else rateBlock">
@@ -73,19 +85,26 @@
       [class]="i % 2 === 0 ? 'bg-table' : ''"
     >
       <ngb-rating
-        class="col-2 fs-4"
+        class="col-12 col-md-2 fs-4"
         [(rate)]="item.rate"
         [max]="4"
         [readonly]="true"
       ></ngb-rating>
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <h4>{{ item.title }}</h4>
         <p>{{ item.comment }}</p>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <span>{{ item.author.firstName + " " + item.author.lastName }}</span
         ><br />
         <small>{{ item.createdAt | date : "dd/MM/YYYY HH:mm" }}</small>
+      </div>
+      <div *ngIf="admin === true" class="col-1">
+        <span
+          ><a class="text-danger" (click)="delete(item.idcrypt)"
+            ><i class="material-icons">delete</i></a
+          ></span
+        >
       </div>
     </div>
   </div>

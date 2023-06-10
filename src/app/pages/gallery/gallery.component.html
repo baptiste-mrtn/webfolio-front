@@ -14,23 +14,22 @@
   </div>
   <ul class="row">
     <li
-      *ngFor="let item of gallery; let i = index"
-      class="col-6 col-lg-3 p-0 m-2 pointer border border-1 border-light position-relative"
-      (mouseenter)="showHover(i)"
-      (mouseleave)="hideHover(i)"
+    *ngFor="let item of gallery; let i = index"
+    class="col-6 col-lg-3 p-0 m-2 pointer border border-1 border-light position-relative"
+    (mouseenter)="showHover(i)"
+    (mouseleave)="hideHover(i)"
     >
-      <a [routerLink]="'read/' + item.idcrypt" class="pointer">
+    <a [routerLink]="'read/' + item.idcrypt" class="pointer">
         <img
           [src]="url + item.picture"
           [alt]="item.title + '-' + item.description"
         />
-      </a>
 
-      <div
+        <div
         [id]="'gal' + i"
         class="position-absolute top-0 end-0 bottom-0 start-0 p-1 bg-trans text-center scale-down-ver-center"
-      >
-      <span class="m-1">{{ item.title }}</span
+        >
+        <span class="m-1">{{ item.title }}</span
           ><br />
           <span class="m-1 ">{{ item.description }}</span>
           <div
@@ -44,6 +43,7 @@
           >
         </div>
       </div>
+    </a>
     </li>
   </ul>
 </section>

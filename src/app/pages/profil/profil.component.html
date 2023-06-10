@@ -1,5 +1,11 @@
 <section class="mt-5">
   <div class="container">
+    <div class="title">
+      <div class="wrapper">
+        <div class="top">Profil</div>
+        <div class="bottom" aria-hidden="true">Profil</div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12 col-md-3 border-end border-white">
         <a
@@ -28,8 +34,32 @@
 
         </div>
         <div *ngIf="selected === 'Commentaires'">
-          <h4 class="text-bm">Vos commentaires</h4>
-
+          <h4 class="text-bm">Mes commentaires</h4>
+          <div class="row" *ngFor="let rev of reviews">
+            <div class="col-12 col-md-3">
+              <ngb-rating
+              class="col-2 fs-4"
+              [(rate)]="rev.rate"
+              [max]="4"
+              [readonly]="true"
+            ></ngb-rating>
+            </div>
+            <div class="col-12 col-md-2">
+              {{rev.title}}
+            </div>
+            <div class="col-12 col-md-2">
+              {{rev.comment}}
+            </div>
+            <div class="col-12 col-md-3">
+              {{rev.createdAt | date:'dd/MM/YYY HH:mm'}}
+            </div>
+            <div class="col-12 col-md-2">
+              <div class="d-flex align-items-center justify-content-between">
+                <a class="text-success" [routerLink]="rev.site != null ? '/sites/read/'+ rev.site.idcrypt : '/sites/read/'+ rev.gallery.idcrypt"><i class="material-icons">launch</i></a>
+                <a class="text-danger" (click)="delete(rev.idcrypt)"><i class="material-icons">delete</i></a>
+              </div>
+            </div>
+          </div>
         </div>
         <div *ngIf="selected === 'Parametres'">
           <h4 class="text-bm">Paramètres</h4>

@@ -11,6 +11,7 @@ import { Sites } from 'src/app/interfaces/sites';
 import { ReviewsService } from 'src/app/services/reviews.service';
 import { SitesService } from 'src/app/services/sites.service';
 import { SERVER_URL } from 'src/environments/environment';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-sites-read',
@@ -23,7 +24,8 @@ export class SitesReadComponent {
     private service: SitesService,
     private reviewService: ReviewsService,
     private toastService: AppToastService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthenticationService
   ) {}
 
   @Input()
@@ -35,6 +37,7 @@ export class SitesReadComponent {
   moy = 0;
   currentRate = 4;
   url = SERVER_URL + '/uploads/sites/';
+  admin: boolean = false;
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -51,7 +54,8 @@ export class SitesReadComponent {
         title: new FormControl('',[ Validators.required])
       });
     }
-    this.getMoyenneReviews(this.site);
+    //this.getMoyenneReviews(this.site);
+    this.checkAdmin();
   }
 
   getMoyenneReviews(site:any) {
@@ -65,6 +69,7 @@ export class SitesReadComponent {
       moyenne += arrRates[i++];
     }
     this.moy = Math.round(moyenne / arrRates.length);
+    console.log(this.moy)
   }
 
   submit(form: any) {
@@ -81,5 +86,18 @@ export class SitesReadComponent {
         console.log(error);
       }
     );
+  }
+
+  delete(id: string){
+    this.reviewService.delete(id).then((data)=>{
+      this.toastService.showSuccess("Commentaire supprimé");
+    }, (error) =>{
+      console.log(error);
+      this.toastService.showDanger("Vous n'êtes pas l'auteur du commentaire ou un admin");
+    })
+  }
+
+  checkAdmin(){
+    this.authService.hasPermission()? this.admin=true:this.admin=false;
   }
 }

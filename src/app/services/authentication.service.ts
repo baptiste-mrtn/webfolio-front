@@ -46,6 +46,8 @@ export class AuthenticationService {
   }
 
   hasPermission(){
-    return this.userValue ? true : false;
+    let user = this.userSubject.getValue();
+    let check = user?.data.roles.includes("ROLE_ADMIN") ? true : false
+    return check;
   }
 }

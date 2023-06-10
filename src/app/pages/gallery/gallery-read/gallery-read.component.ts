@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { Gallery } from 'src/app/interfaces/gallery';
 import { AppToastService } from 'src/app/interfaces/toast-info';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { GalleryService } from 'src/app/services/gallery.service';
 import { ReviewsService } from 'src/app/services/reviews.service';
 import { SERVER_URL } from 'src/environments/environment';
@@ -18,8 +19,9 @@ export class GalleryReadComponent {
     private service: GalleryService,
     private reviewService: ReviewsService,
     private toastService: AppToastService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private authService: AuthenticationService
+    ) {}
 
   @Input()
   id?: number;
@@ -30,6 +32,7 @@ export class GalleryReadComponent {
   moy = 0;
   currentRate = 4;
   url = SERVER_URL + '/uploads/gallery/';
+  admin: boolean = false;
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -46,7 +49,7 @@ export class GalleryReadComponent {
         title: new FormControl('',[ Validators.required])
       });
     }
-    this.getMoyenneReviews(this.gallery);
+    //this.getMoyenneReviews(this.gallery);
   }
 
   getMoyenneReviews(gallery:any) {
@@ -76,5 +79,18 @@ export class GalleryReadComponent {
         console.log(error);
       }
     );
+  }
+
+  delete(id: string){
+    this.reviewService.delete(id).then((data)=>{
+      this.toastService.showSuccess("Commentaire supprimé");
+    }, (error) =>{
+      console.log(error);
+      this.toastService.showDanger("Vous n'êtes pas l'auteur du commentaire ou un admin");
+    })
+  }
+
+  checkAdmin(){
+    this.authService.hasPermission()? this.admin=true:this.admin=false;
   }
 }
